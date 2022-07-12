@@ -18,15 +18,17 @@ def get_xi_data(url):
     data = data[0]['fields']
     return data
 
-""" 
-* sends SMS alerts
-* @params url, params
-* return dict
-"""
+
 def alert(url, params):
-    headers = {'Content-type': 'application/json; charset=utf-8'}
-    r = requests.post(url, json=params, headers=headers)
-    return r
+    """sends sms alert"""
+    try:
+        headers = {'Content-type': 'application/json; charset=utf-8'}
+        r = requests.post(url, json=params, headers=headers)
+        
+    except Exception as e:
+        print(e)
+        return False
+    return True
 
 recipients = ["+265998006237", "+265991450316", "+265995246144", "+265998276712", "+265996193917", "+265999500312", "+265999755473", "+265992215557", "+265991351754", "+265994666034"]
 
