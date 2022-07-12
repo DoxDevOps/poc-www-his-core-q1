@@ -42,12 +42,6 @@ echo "Your build number is: \\${REQUEST_ID} -> ${REQUEST_ID}"'''
           }
         }
 
-        stage('Fetching DDE') {
-          steps {
-            echo 'Pulling dde4 app folder'
-          }
-        }
-
       }
     }
 
@@ -69,12 +63,6 @@ echo "Your build number is: \\${REQUEST_ID} -> ${REQUEST_ID}"'''
             echo 'Shipping & configuring Core & ART'
             sh '''python3 core_shippingx.py
 '''
-          }
-        }
-
-        stage('DDE') {
-          steps {
-            echo 'Sipping DDE folder'
           }
         }
 
