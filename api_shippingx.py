@@ -46,13 +46,13 @@ for site_id in cluster['site']:
 
         if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
 
-            # shipping backup script
-            #push_backup_script = "rsync " + "-r $WORKSPACE/devops_api_backup.sh " + site['username'] + "@" + site['ip_address'] + ":/var/www"
-            #os.system(push_backup_script)
+            # shipping tag deleting script
+            push_tag_delete_script = "rsync " + "-r $WORKSPACE/tag_delete.sh " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-EMR-API"
+            os.system(push_tag_delete_script)
             
             # backing up application folder [API]
-            #backup_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www && chmod 777 devops_api_backup.sh && ./devops_api_backup.sh'"
-            #os.system(backup_script)
+            run_tag_delete_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API && ./tag_delete.sh'"
+            os.system(run_tag_delete_script)
             
             # ship api to remote site
             push_api = "rsync " + "-r $WORKSPACE/BHT-EMR-API " + site['username'] + "@" + site['ip_address'] + ":/var/www"
