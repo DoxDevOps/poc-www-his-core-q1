@@ -29,9 +29,9 @@ def alert(url, params):
         return False
     return True
 
-recipients = ["+265998006237", "+265991450316", "+265995246144", "+265998276712", "+265992182669", "+265994822263"]#, "+265995532195", " +265999600511", "+265992277183"]
+recipients = ["+265998006237", "+265991450316", "+265995246144", "+265998276712", "+265992182669", "+265994822263", "+265999679975", "+265992600883", "+265994427700", "+265888874484", "+265999611280"]#, "+265995532195", " +265999600511", "+265992277183"]
 
-cluster = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_cluster/32')
+cluster = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_cluster/3')
 
 for site_id in cluster['site']:
     site = get_xi_data('http://10.44.0.52/sites/api/v1/get_single_site/' + str(site_id))
@@ -47,12 +47,12 @@ for site_id in cluster['site']:
         if subprocess.call(['ping', param, '1', site['ip_address']]) == 0:
 
             # shipping tag deleting script
-            #push_tag_delete_script = "rsync " + "-r $WORKSPACE/tag_delete.sh " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-EMR-API"
-            #os.system(push_tag_delete_script)
+            push_tag_delete_script = "rsync " + "-r $WORKSPACE/tag_delete.sh " + site['username'] + "@" + site['ip_address'] + ":/var/www/BHT-EMR-API"
+            os.system(push_tag_delete_script)
             
             # backing up application folder [API]
-            #run_tag_delete_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API && ./tag_delete.sh'"
-            #os.system(run_tag_delete_script)
+            run_tag_delete_script = "ssh " + site['username'] + "@" + site['ip_address'] + " 'cd /var/www/BHT-EMR-API && ./tag_delete.sh'"
+            os.system(run_tag_delete_script)
             
             # ship api to remote site
             push_api = "rsync " + "-r $WORKSPACE/BHT-EMR-API " + site['username'] + "@" + site['ip_address'] + ":/var/www"
