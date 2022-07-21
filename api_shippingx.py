@@ -81,7 +81,7 @@ for site_id in cluster['site']:
 
             # send sms alert
             for recipient in recipients:
-                msg = "Hi there,\n\nDeployment of API to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
+                msg = "Hi there,\n\nResolving of API naming to " + version + " for " + site['name'] + " completed succesfully.\n\nThanks!\nEGPAF HIS."
                 params = {
                     "api_key": os.getenv('API_KEY'),
                     "recipient": recipient,
